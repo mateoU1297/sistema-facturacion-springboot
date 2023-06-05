@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="layout/layout :: head"></head>
+
 <body>
 
 	<header th:replace="layout/layout :: header"></header>
@@ -18,27 +20,31 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th>id</th>
-							<th>nombre</th>
-							<th>apellido</th>
-							<th>email</th>
-							<th>fecha</th>
-							<th>editar</th>
-							<th>eliminar</th>
+							<th>Id</th>
+							<th>Nombre</th>
+							<th>Apellido</th>
+							<th>Email</th>
+							<th>Fecha</th>
+							<th>Crear factura</th>
+							<th>Editar</th>
+							<th>Eliminar</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="cliente: ${clientes}">
-							<td><a class="btn btn-primary btn-xs" th:href="@{/ver/} + ${cliente.id}" th:text="${cliente.id}"></a></td>
+							<td><a class="btn btn-primary btn-xs" th:href="@{/ver/} + ${cliente.id}"
+									th:text="${cliente.id}"></a></td>
 							<td th:text="${cliente.nombre}"></td>
 							<td th:text="${cliente.apellido}"></td>
 							<td th:text="${cliente.email}"></td>
 							<td th:text="${cliente.createAt}"></td>
-							<td><a class="btn btn-primary btn-sm"
-								th:href="@{/form/} + ${cliente.id}" th:text="'editar'"></a></td>
-							<td><a class="btn btn-danger btn-sm"
-								th:href="@{/eliminar/} + ${cliente.id}" th:text="'eliminar'"
-								onclick="return confirm('Est�s seguro que quieres eliminar?');"></a></td>
+							<td><a class="btn btn-success btn-xs" th:href="@{'/factura/form/' + ${cliente.id}}" th:text="'Crear factura'"></a>
+							</td>
+							<td><a class="btn btn-primary btn-xs" th:href="@{/form/} + ${cliente.id}"
+									th:text="'editar'"></a></td>
+							<td><a class="btn btn-danger btn-xs" th:href="@{/eliminar/} + ${cliente.id}"
+									th:text="'eliminar'"
+									onclick="return confirm('Est�s seguro que quieres eliminar?');"></a></td>
 						</tr>
 					</tbody>
 
@@ -46,9 +52,10 @@
 				<nav th:replace="paginator-nav :: paginator"></nav>
 			</div>
 		</div>
-		
+
 	</div>
-	
+
 	<footer th:replace="layout/layout :: footer"></footer>
 </body>
+
 </html>
