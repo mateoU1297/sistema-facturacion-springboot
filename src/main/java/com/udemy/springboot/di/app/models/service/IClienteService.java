@@ -19,6 +19,8 @@ public interface IClienteService {
 	
 	public Cliente findOne(Long id);
 	
+	public Cliente fetchByIdWithFacturas(Long id);
+	
 	public void delete(Long id);
 	
 	public List<Producto> findByNombre(String term);
@@ -27,6 +29,10 @@ public interface IClienteService {
 	
 	public Producto findProductoById(Long id);
 	
-	public Factura findByFacturaById(Long id); 
+	public Factura findFacturaById(Long id);
+	
+	public void deleteFactura(Long id);
+	
+	public Factura fetchFacturaByIdWithClienteWithItemFacturaWithProducto(Long id);
 	
 }
