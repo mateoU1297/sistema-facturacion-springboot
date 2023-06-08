@@ -21,7 +21,8 @@ public class SpringSecurityConfig {
 	public UserDetailsService userDetailsService() throws Exception {
 
 		InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-		manager.createUser(User.withUsername("mateo").password(passwordEncoder().encode("12345")).roles("USER").build());
+		manager.createUser(
+				User.withUsername("mateo").password(passwordEncoder().encode("12345")).roles("USER").build());
 
 		manager.createUser(
 				User.withUsername("admin").password(passwordEncoder().encode("admin")).roles("ADMIN", "USER").build());
@@ -36,8 +37,9 @@ public class SpringSecurityConfig {
 				authz.requestMatchers("/", "/css/**", "/js/**", "/images/**", "/listar").permitAll()
 						.requestMatchers("/uploads/**").hasAnyRole("USER").requestMatchers("/ver/**").hasRole("USER")
 						.requestMatchers("/factura/**").hasRole("ADMIN").requestMatchers("/form/**").hasRole("ADMIN")
-						.requestMatchers("/eliminar/**").hasRole("ADMIN").anyRequest().authenticated().and().formLogin().loginPage("/login")
-						.permitAll().and().logout().permitAll();
+						.requestMatchers("/eliminar/**").hasRole("ADMIN").anyRequest().authenticated().and().formLogin()
+						.loginPage("/login").permitAll().and().logout().permitAll().and().exceptionHandling()
+						.accessDeniedPage("/error_403");
 
 			} catch (Exception e) {
 				e.printStackTrace();
