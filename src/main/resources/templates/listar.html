@@ -20,7 +20,7 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th sec:authorize="hasRole('ROLE_USER')">Id</th>
+							<th sec:authorize="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">Id</th>
 							<th>Nombre</th>
 							<th>Apellido</th>
 							<th>Email</th>
@@ -32,7 +32,7 @@
 					</thead>
 					<tbody>
 						<tr th:each="cliente: ${clientes}">
-							<td sec:authorize="hasRole('ROLE_USER')"><a class="btn btn-primary btn-xs" th:href="@{/ver/} + ${cliente.id}"
+							<td sec:authorize="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"><a class="btn btn-primary btn-xs" th:href="@{/ver/} + ${cliente.id}"
 									th:text="${cliente.id}"></a></td>
 							<td th:text="${cliente.nombre}"></td>
 							<td th:text="${cliente.apellido}"></td>
@@ -44,7 +44,7 @@
 									th:text="'editar'"></a></td>
 							<td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-danger btn-xs" th:href="@{/eliminar/} + ${cliente.id}"
 									th:text="'eliminar'"
-									onclick="return confirm('Est�s seguro que quieres eliminar?');"></a></td>
+									onclick="return confirm('Estás seguro que quieres eliminar?');"></a></td>
 						</tr>
 					</tbody>
 
