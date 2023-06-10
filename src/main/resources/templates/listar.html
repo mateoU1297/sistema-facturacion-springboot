@@ -50,7 +50,8 @@
 									th:href="@{/form/} + ${cliente.id}" th:text="#{text.cliente.editar}"></a></td>
 							<td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-danger btn-xs"
 									th:href="@{/eliminar/} + ${cliente.id}" th:text="#{text.cliente.eliminar}"
-									onclick="return confirm('Estás seguro que quieres eliminar?');"></a></td>
+									onclick="return confirm(document.getElementById('i18n_eliminar_cliente').innerHTML);"></a>
+							</td>
 						</tr>
 					</tbody>
 
