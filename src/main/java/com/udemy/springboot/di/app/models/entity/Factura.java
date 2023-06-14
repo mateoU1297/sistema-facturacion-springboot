@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -40,6 +42,7 @@ public class Factura implements Serializable {
 	private Date createAt;
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonBackReference
 	private Cliente cliente;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
