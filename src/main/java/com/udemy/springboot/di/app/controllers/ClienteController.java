@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,6 +31,7 @@ import com.udemy.springboot.di.app.models.entity.Cliente;
 import com.udemy.springboot.di.app.models.service.IClienteService;
 import com.udemy.springboot.di.app.models.service.IUploadFileService;
 import com.udemy.springboot.di.app.util.paginator.PageRender;
+import com.udemy.springboot.di.app.view.xml.ClienteList;
 
 import jakarta.validation.Valid;
 
@@ -79,6 +81,12 @@ public class ClienteController {
 		model.put("titulo", messageSource.getMessage("text.cliente.detalle.titulo", null, locale).concat(": ")
 				.concat(cliente.getNombre()));
 		return "ver";
+	}
+	
+	@GetMapping(value = "/listar-rest")
+	@ResponseBody
+	public ClienteList listarRest() {
+		return new ClienteList(clienteService.findAll());
 	}
 
 	@RequestMapping(value = { "/listar", "/" }, method = RequestMethod.GET)

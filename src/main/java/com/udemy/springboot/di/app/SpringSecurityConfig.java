@@ -36,7 +36,7 @@ public class SpringSecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests((authz) -> {
 			try {
-				authz.requestMatchers("/", "/css/**", "/js/**", "/images/**", "/listar", "/locale").permitAll().anyRequest()
+				authz.requestMatchers("/", "/css/**", "/js/**", "/images/**", "/listar**", "/locale", "/api/clientes/**").permitAll().anyRequest()
 						.authenticated().and().formLogin().successHandler(successHandler).loginPage("/login")
 						.permitAll().and().logout().permitAll().and().exceptionHandling()
 						.accessDeniedPage("/error_403");
